@@ -8,16 +8,18 @@ import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
-
-import java.io.IOException;
+import org.apache.hadoop.util.GenericOptionsParser;
 
 /**
  * @author by mobingsen on 2021/5/25 20:31
  */
 public class MyJob {
 
-    public static void main(String[] args) throws IOException, InterruptedException, ClassNotFoundException {
+    public static void main(String[] args) throws Exception {
         Configuration conf = new Configuration(true);
+
+        GenericOptionsParser parser = new GenericOptionsParser(conf, args);
+        String[] remainingArgs = parser.getRemainingArgs();
 
         // 让框架知道是windows异构平台运行
         conf.set("mapreduce.app-submission.cross-platform", "true");
