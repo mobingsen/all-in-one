@@ -34,10 +34,10 @@ public class MyJob {
         job.setJarByClass(MyJob.class);
         job.setJobName(MyJob.class.getName());
 
-        Path in = new Path("/data/wc/in");
+        Path in = new Path(/*"/data/wc/in"*/remainingArgs[0]);
         FileInputFormat.addInputPath(job, in);
 
-        Path out = new Path("/data/wc/out");
+        Path out = new Path(/*"/data/wc/out"*/remainingArgs[1]);
         FileSystem fileSystem = out.getFileSystem(conf);
         if (fileSystem.exists(out)) {
             fileSystem.delete(out, true);
@@ -48,7 +48,7 @@ public class MyJob {
         job.setMapOutputKeyClass(Text.class);
         job.setMapOutputValueClass(IntWritable.class);
         job.setReducerClass(MyReducer.class);
-
+        //job.setNumReduceTasks(2);
         job.waitForCompletion(true);
     }
 }
