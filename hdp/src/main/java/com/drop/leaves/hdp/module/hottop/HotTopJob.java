@@ -3,6 +3,7 @@ package com.drop.leaves.hdp.module.hottop;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
@@ -17,6 +18,11 @@ public class HotTopJob {
 
     public static void main(String[] args) throws IOException, InterruptedException, ClassNotFoundException {
         Configuration conf = new Configuration(true);
+
+        conf.set("mapreduce.framework.name", "local");
+        conf.set("mapreduce.app-submission.cross-platform", "true");
+        // conf.set("fs.defaultFS", "local");
+
         final String[] remainingArgs = new GenericOptionsParser(args).getRemainingArgs();
 
         Job job = Job.getInstance(conf);
@@ -31,10 +37,14 @@ public class HotTopJob {
 
         job.setMapperClass(HotTopMapper.class);
         job.setMapOutputKeyClass(HotTopKey.class);
-        job.setMapOutputValueClass(HotTopValue.class);
+        job.setMapOutputValueClass(IntWritable.class);
 
         job.setPartitionerClass(HotTopPartitioner.class);
         job.setSortComparatorClass(HotTopSortComparator.class);
+
+        job.setGroupingComparatorClass(HotTopGroupingComparator.class);
+
+        job.setReducerClass(HotTopReduce.class);
 
         job.waitForCompletion(true);
     }
