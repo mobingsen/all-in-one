@@ -1,4 +1,4 @@
-package com.drop.leaves.hdp.module.mr.wc;
+package com.drop.leaves.hdp.module.wc;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileSystem;

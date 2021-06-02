@@ -1,4 +1,4 @@
-package com.drop.leaves.hdp.module.mr.wc;
+package com.drop.leaves.hdp.module.wc;
 
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
