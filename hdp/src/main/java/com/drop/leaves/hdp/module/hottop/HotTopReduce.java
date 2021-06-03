@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.Iterator;
 
 /**
- * @Created by mobingsen on 2021/6/2 23:30
+ * @author by mobingsen on 2021/6/2 23:30
  */
 public class HotTopReduce extends Reducer<HotTopKey, IntWritable, Text, IntWritable> {
 

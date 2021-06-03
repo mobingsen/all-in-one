@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
- * @Created by mobingsen on 2021/6/2 22:57
+ * @author by mobingsen on 2021/6/2 22:57
  */
 public class HotTopMapper extends Mapper<LongWritable, Text, HotTopKey, IntWritable> {
 

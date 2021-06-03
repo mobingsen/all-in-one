@@ -6,7 +6,7 @@ import org.apache.hadoop.io.WritableComparator;
 import java.util.Comparator;
 
 /**
- * @Created by mobingsen on 2021/6/2 23:27
+ * @author by mobingsen on 2021/6/2 23:27
  */
 public class HotTopGroupingComparator extends WritableComparator {
 

@@ -4,7 +4,7 @@ import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.mapreduce.Partitioner;
 
 /**
- * @Created by mobingsen on 2021/6/2 23:11
+ * @author by mobingsen on 2021/6/2 23:11
  */
 public class HotTopPartitioner extends Partitioner<HotTopKey, IntWritable> {
     @Override

@@ -6,7 +6,7 @@ import org.apache.hadoop.io.WritableComparator;
 import java.util.Comparator;
 
 /**
- * @Created by mobingsen on 2021/6/2 23:15
+ * @author by mobingsen on 2021/6/2 23:15
  */
 public class HotTopSortComparator extends WritableComparator {
 
