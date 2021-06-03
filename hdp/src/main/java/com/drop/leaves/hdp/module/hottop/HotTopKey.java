@@ -20,6 +20,7 @@ public class HotTopKey implements WritableComparable<HotTopKey> {
     private int month;
     private int day;
     private int wd;
+    private String location;
 
     @Override
     public int compareTo(HotTopKey o) {
@@ -35,6 +36,7 @@ public class HotTopKey implements WritableComparable<HotTopKey> {
         out.writeInt(month);
         out.writeInt(day);
         out.writeInt(wd);
+        out.writeUTF(location);
     }
 
     @Override
@@ -43,5 +45,6 @@ public class HotTopKey implements WritableComparable<HotTopKey> {
         this.month = in.readInt();
         this.day = in.readInt();
         this.wd = in.readInt();
+        this.location = in.readUTF();
     }
 }

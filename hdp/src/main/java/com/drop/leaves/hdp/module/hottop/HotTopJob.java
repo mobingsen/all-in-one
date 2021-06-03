@@ -19,13 +19,19 @@ public class HotTopJob {
     public static void main(String[] args) throws IOException, InterruptedException, ClassNotFoundException {
         Configuration conf = new Configuration(true);
 
-        conf.set("mapreduce.framework.name", "local");
+        // conf.set("mapreduce.framework.name", "local");
         conf.set("mapreduce.app-submission.cross-platform", "true");
         // conf.set("fs.defaultFS", "local");
 
         final String[] remainingArgs = new GenericOptionsParser(args).getRemainingArgs();
 
         Job job = Job.getInstance(conf);
+
+        job.setJarByClass(HotTopJob.class);
+        job.setJobName("Hot Top N");
+        // 只能集群运行
+        job.addCacheFile(new Path("/data/dict/dict.txt").toUri());
+
         FileInputFormat.addInputPath(job, new Path(remainingArgs[0]));
 
         final Path out = new Path(remainingArgs[1]);
