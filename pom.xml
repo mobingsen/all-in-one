@@ -24,4 +24,24 @@
         <module>hdp</module>
         <module>mybatis</module>
     </modules>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.github.uinios</groupId>
+                <artifactId>mybatis-dynamic-spring-boot-starter</artifactId>
+                <version>1.5.2</version>
+            </dependency>
+            <dependency>
+                <groupId>org.eclipse.jgit</groupId>
+                <artifactId>org.eclipse.jgit</artifactId>
+                <version>4.5.4.201711221230-r</version>
+            </dependency>
+            <dependency>
+                <groupId>com.thoughtworks.xstream</groupId>
+                <artifactId>xstream</artifactId>
+                <version>1.4.17</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 </project>
