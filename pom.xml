@@ -24,6 +24,7 @@
         <module>hdp</module>
         <module>mybatis-hub</module>
         <module>jooq-hub</module>
+        <module>mybatis-dynamic-sql-hub</module>
     </modules>
 
     <dependencyManagement>
