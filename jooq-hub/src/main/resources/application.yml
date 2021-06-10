@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    hikari:
+      jdbc-url: ${spring.datasource.url}
+      username: '@db.usr@'
+      password: '@db.pwd@'
+    url: '@db.url@'
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true

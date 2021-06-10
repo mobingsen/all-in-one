@@ -22,7 +22,8 @@
 
     <modules>
         <module>hdp</module>
-        <module>mybatis</module>
+        <module>mybatis-hub</module>
+        <module>jooq-hub</module>
     </modules>
 
     <dependencyManagement>
@@ -31,11 +32,6 @@
                 <groupId>com.github.uinios</groupId>
                 <artifactId>mybatis-dynamic-spring-boot-starter</artifactId>
                 <version>1.5.2</version>
-            </dependency>
-            <dependency>
-                <groupId>org.mybatis.dynamic-sql</groupId>
-                <artifactId>mybatis-dynamic-sql</artifactId>
-                <version>1.2.1</version>
             </dependency>
             <dependency>
                 <groupId>org.eclipse.jgit</groupId>

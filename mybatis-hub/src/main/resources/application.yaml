@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    hikari:
+      jdbc-url: ${spring.datasource.url}
+      username: root
+      password: 123456
+    url: jdbc:mysql://127.0.0.1:3306/all-in-one?zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&serverTimezone=Asia/Shanghai
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
