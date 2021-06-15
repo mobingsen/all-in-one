@@ -1,8 +1,19 @@
 package com.drop.leaves.mybatisdynamicsqlhub.module.person.mapper;
 
+import com.drop.leaves.mybatisdynamicsqlhub.module.address.model.AddressRecord;
+import com.drop.leaves.mybatisdynamicsqlhub.module.person.model.LastName;
+import lombok.Data;
+import lombok.experimental.Accessors;
+
 import java.util.Date;
 
+/**
+ * @author mobingsen
+ */
+@Data
+@Accessors(chain = true)
 public class PersonWithAddress {
+
     private Integer id;
     private String firstName;
     private LastName lastName;
@@ -10,60 +21,4 @@ public class PersonWithAddress {
     private Boolean employed;
     private String occupation;
     private AddressRecord address;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public LastName getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(LastName lastName) {
-        this.lastName = lastName;
-    }
-
-    public Date getBirthDate() {
-        return birthDate;
-    }
-
-    public void setBirthDate(Date birthDate) {
-        this.birthDate = birthDate;
-    }
-
-    public String getOccupation() {
-        return occupation;
-    }
-
-    public void setOccupation(String occupation) {
-        this.occupation = occupation;
-    }
-
-    public Boolean getEmployed() {
-        return employed;
-    }
-
-    public void setEmployed(Boolean employed) {
-        this.employed = employed;
-    }
-
-    public AddressRecord getAddress() {
-        return address;
-    }
-
-    public void setAddress(AddressRecord address) {
-        this.address = address;
-    }
 }

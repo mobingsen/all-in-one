@@ -1,5 +1,8 @@
-package com.drop.leaves.mybatisdynamicsqlhub.module.person.mapper;
+package com.drop.leaves.mybatisdynamicsqlhub.module.person.service;
 
+import com.drop.leaves.mybatisdynamicsqlhub.module.person.mapper.*;
+import com.drop.leaves.mybatisdynamicsqlhub.module.person.model.LastName;
+import com.drop.leaves.mybatisdynamicsqlhub.module.person.model.PersonRecord;
 import org.apache.ibatis.datasource.unpooled.UnpooledDataSource;
 import org.apache.ibatis.jdbc.ScriptRunner;
 import org.apache.ibatis.mapping.Environment;

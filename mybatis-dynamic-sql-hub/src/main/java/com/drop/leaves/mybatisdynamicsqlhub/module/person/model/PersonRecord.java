@@ -1,4 +1,4 @@
-package com.drop.leaves.mybatisdynamicsqlhub.module.person.mapper;
+package com.drop.leaves.mybatisdynamicsqlhub.module.person.model;
 
 import lombok.Data;
 import lombok.experimental.Accessors;

@@ -9,6 +9,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.UnaryOperator;
 
+import com.drop.leaves.mybatisdynamicsqlhub.module.person.handler.LastNameTypeHandler;
+import com.drop.leaves.mybatisdynamicsqlhub.module.person.handler.YesNoTypeHandler;
+import com.drop.leaves.mybatisdynamicsqlhub.module.person.model.PersonRecord;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.ResultMap;
@@ -32,32 +35,31 @@ import org.mybatis.dynamic.sql.util.mybatis3.CommonUpdateMapper;
 import org.mybatis.dynamic.sql.util.mybatis3.MyBatis3Utils;
 
 /**
- *
  * Note: this is the canonical mapper with the new style methods
  * and represents the desired output for MyBatis Generator
  *
+ * @author mobingsen
  */
 @Mapper
 public interface PersonMapper extends CommonCountMapper, CommonDeleteMapper, CommonInsertMapper<PersonRecord>, CommonUpdateMapper {
 
-    @SelectProvider(type=SqlProviderAdapter.class, method="select")
-    @Results(id="PersonResult", value= {
-            @Result(column="A_ID", property="id", jdbcType=JdbcType.INTEGER, id=true),
-            @Result(column="first_name", property="firstName", jdbcType=JdbcType.VARCHAR),
-            @Result(column="last_name", property="lastName", jdbcType=JdbcType.VARCHAR, typeHandler=LastNameTypeHandler.class),
-            @Result(column="birth_date", property="birthDate", jdbcType=JdbcType.DATE),
-            @Result(column="employed", property="employed", jdbcType=JdbcType.VARCHAR, typeHandler=YesNoTypeHandler.class),
-            @Result(column="occupation", property="occupation", jdbcType=JdbcType.VARCHAR),
-            @Result(column="address_id", property="addressId", jdbcType=JdbcType.INTEGER)
+    @SelectProvider(type = SqlProviderAdapter.class, method = "select")
+    @Results(id = "PersonResult", value = {
+            @Result(column = "A_ID", property = "id", jdbcType = JdbcType.INTEGER, id = true),
+            @Result(column = "first_name", property = "firstName", jdbcType = JdbcType.VARCHAR),
+            @Result(column = "last_name", property = "lastName", jdbcType = JdbcType.VARCHAR, typeHandler = LastNameTypeHandler.class),
+            @Result(column = "birth_date", property = "birthDate", jdbcType = JdbcType.DATE),
+            @Result(column = "employed", property = "employed", jdbcType = JdbcType.VARCHAR, typeHandler = YesNoTypeHandler.class),
+            @Result(column = "occupation", property = "occupation", jdbcType = JdbcType.VARCHAR),
+            @Result(column = "address_id", property = "addressId", jdbcType = JdbcType.INTEGER)
     })
     List<PersonRecord> selectMany(SelectStatementProvider selectStatement);
 
-    @SelectProvider(type=SqlProviderAdapter.class, method="select")
+    @SelectProvider(type = SqlProviderAdapter.class, method = "select")
     @ResultMap("PersonResult")
     Optional<PersonRecord> selectOne(SelectStatementProvider selectStatement);
 
-    BasicColumn[] selectList =
-            BasicColumn.columnList(id.as("A_ID"), firstName, lastName, birthDate, employed, occupation, addressId);
+    BasicColumn[] selectList = BasicColumn.columnList(id.as("A_ID"), firstName, lastName, birthDate, employed, occupation, addressId);
 
     default long count(CountDSLCompleter completer) {
         return MyBatis3Utils.countFrom(this::count, person, completer);
@@ -77,7 +79,7 @@ public interface PersonMapper extends CommonCountMapper, CommonDeleteMapper, Com
 
     default int deleteByPrimaryKey(Integer id_) {
         return delete(c ->
-            c.where(id, isEqualTo(id_))
+                c.where(id, isEqualTo(id_))
         );
     }
 
@@ -87,41 +89,41 @@ public interface PersonMapper extends CommonCountMapper, CommonDeleteMapper, Com
 
     default int insert(PersonRecord record) {
         return MyBatis3Utils.insert(this::insert, record, person, c ->
-            c.map(id).toProperty("id")
-            .map(firstName).toProperty("firstName")
-            .map(lastName).toProperty("lastName")
-            .map(birthDate).toProperty("birthDate")
-            .map(employed).toProperty("employed")
-            .map(occupation).toProperty("occupation")
-            .map(addressId).toProperty("addressId")
+                c.map(id).toProperty("id")
+                        .map(firstName).toProperty("firstName")
+                        .map(lastName).toProperty("lastName")
+                        .map(birthDate).toProperty("birthDate")
+                        .map(employed).toProperty("employed")
+                        .map(occupation).toProperty("occupation")
+                        .map(addressId).toProperty("addressId")
         );
     }
 
-    default int insertMultiple(PersonRecord...records) {
+    default int insertMultiple(PersonRecord... records) {
         return insertMultiple(Arrays.asList(records));
     }
 
     default int insertMultiple(Collection<PersonRecord> records) {
         return MyBatis3Utils.insertMultiple(this::insertMultiple, records, person, c ->
-            c.map(id).toProperty("id")
-            .map(firstName).toProperty("firstName")
-            .map(lastName).toProperty("lastName")
-            .map(birthDate).toProperty("birthDate")
-            .map(employed).toProperty("employed")
-            .map(occupation).toProperty("occupation")
-            .map(addressId).toProperty("addressId")
+                c.map(id).toProperty("id")
+                        .map(firstName).toProperty("firstName")
+                        .map(lastName).toProperty("lastName")
+                        .map(birthDate).toProperty("birthDate")
+                        .map(employed).toProperty("employed")
+                        .map(occupation).toProperty("occupation")
+                        .map(addressId).toProperty("addressId")
         );
     }
 
     default int insertSelective(PersonRecord record) {
         return MyBatis3Utils.insert(this::insert, record, person, c ->
-            c.map(id).toPropertyWhenPresent("id", record::getId)
-            .map(firstName).toPropertyWhenPresent("firstName", record::getFirstName)
-            .map(lastName).toPropertyWhenPresent("lastName", record::getLastName)
-            .map(birthDate).toPropertyWhenPresent("birthDate", record::getBirthDate)
-            .map(employed).toPropertyWhenPresent("employed", record::getEmployed)
-            .map(occupation).toPropertyWhenPresent("occupation", record::getOccupation)
-            .map(addressId).toPropertyWhenPresent("addressId", record::getAddressId)
+                c.map(id).toPropertyWhenPresent("id", record::getId)
+                        .map(firstName).toPropertyWhenPresent("firstName", record::getFirstName)
+                        .map(lastName).toPropertyWhenPresent("lastName", record::getLastName)
+                        .map(birthDate).toPropertyWhenPresent("birthDate", record::getBirthDate)
+                        .map(employed).toPropertyWhenPresent("employed", record::getEmployed)
+                        .map(occupation).toPropertyWhenPresent("occupation", record::getOccupation)
+                        .map(addressId).toPropertyWhenPresent("addressId", record::getAddressId)
         );
     }
 
@@ -139,7 +141,7 @@ public interface PersonMapper extends CommonCountMapper, CommonDeleteMapper, Com
 
     default Optional<PersonRecord> selectByPrimaryKey(Integer id_) {
         return selectOne(c ->
-            c.where(id, isEqualTo(id_))
+                c.where(id, isEqualTo(id_))
         );
     }
 
@@ -148,7 +150,7 @@ public interface PersonMapper extends CommonCountMapper, CommonDeleteMapper, Com
     }
 
     static UpdateDSL<UpdateModel> updateAllColumns(PersonRecord record,
-            UpdateDSL<UpdateModel> dsl) {
+                                                   UpdateDSL<UpdateModel> dsl) {
         return dsl.set(id).equalTo(record::getId)
                 .set(firstName).equalTo(record::getFirstName)
                 .set(lastName).equalTo(record::getLastName)
@@ -159,7 +161,7 @@ public interface PersonMapper extends CommonCountMapper, CommonDeleteMapper, Com
     }
 
     static UpdateDSL<UpdateModel> updateSelectiveColumns(PersonRecord record,
-            UpdateDSL<UpdateModel> dsl) {
+                                                         UpdateDSL<UpdateModel> dsl) {
         return dsl.set(id).equalToWhenPresent(record::getId)
                 .set(firstName).equalToWhenPresent(record::getFirstName)
                 .set(lastName).equalToWhenPresent(record::getLastName)
@@ -171,25 +173,25 @@ public interface PersonMapper extends CommonCountMapper, CommonDeleteMapper, Com
 
     default int updateByPrimaryKey(PersonRecord record) {
         return update(c ->
-            c.set(firstName).equalTo(record::getFirstName)
-            .set(lastName).equalTo(record::getLastName)
-            .set(birthDate).equalTo(record::getBirthDate)
-            .set(employed).equalTo(record::getEmployed)
-            .set(occupation).equalTo(record::getOccupation)
-            .set(addressId).equalTo(record::getAddressId)
-            .where(id, isEqualTo(record::getId))
+                c.set(firstName).equalTo(record::getFirstName)
+                        .set(lastName).equalTo(record::getLastName)
+                        .set(birthDate).equalTo(record::getBirthDate)
+                        .set(employed).equalTo(record::getEmployed)
+                        .set(occupation).equalTo(record::getOccupation)
+                        .set(addressId).equalTo(record::getAddressId)
+                        .where(id, isEqualTo(record::getId))
         );
     }
 
     default int updateByPrimaryKeySelective(PersonRecord record) {
         return update(c ->
-            c.set(firstName).equalToWhenPresent(record::getFirstName)
-            .set(lastName).equalToWhenPresent(record::getLastName)
-            .set(birthDate).equalToWhenPresent(record::getBirthDate)
-            .set(employed).equalToWhenPresent(record::getEmployed)
-            .set(occupation).equalToWhenPresent(record::getOccupation)
-            .set(addressId).equalToWhenPresent(record::getAddressId)
-            .where(id, isEqualTo(record::getId))
+                c.set(firstName).equalToWhenPresent(record::getFirstName)
+                        .set(lastName).equalToWhenPresent(record::getLastName)
+                        .set(birthDate).equalToWhenPresent(record::getBirthDate)
+                        .set(employed).equalToWhenPresent(record::getEmployed)
+                        .set(occupation).equalToWhenPresent(record::getOccupation)
+                        .set(addressId).equalToWhenPresent(record::getAddressId)
+                        .where(id, isEqualTo(record::getId))
         );
     }
 }

@@ -3,6 +3,7 @@ package com.drop.leaves.mybatisdynamicsqlhub.module.person.mapper;
 import java.sql.JDBCType;
 import java.util.Date;
 
+import com.drop.leaves.mybatisdynamicsqlhub.module.person.model.LastName;
 import org.mybatis.dynamic.sql.SqlColumn;
 import org.mybatis.dynamic.sql.SqlTable;
 

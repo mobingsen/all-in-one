@@ -1,10 +1,13 @@
-package com.drop.leaves.mybatisdynamicsqlhub.module.person.mapper;
+package com.drop.leaves.mybatisdynamicsqlhub.module.address.mapper;
 
 import java.sql.JDBCType;
 
 import org.mybatis.dynamic.sql.SqlColumn;
 import org.mybatis.dynamic.sql.SqlTable;
 
+/**
+ * @author mobingsen
+ */
 public final class AddressDynamicSqlSupport {
     public static final Address address = new Address();
     public static final SqlColumn<Integer> id = address.id;
