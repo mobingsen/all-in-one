@@ -1,0 +1,21 @@
+server:
+  port: 8090
+spring:
+  application:
+    name: mybatis-dynamic-sql-hub
+  datasource:
+    dynamic:
+      primary: db_all_in_one_1
+      datasource:
+        db_all_in_one_1:
+          username: root
+          password: 123456
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          url: jdbc:mysql://127.0.0.1:3306/db_all_in_one_1?characterEncoding=utf8&useSSL=false
+        db_all_in_one_2:
+          username: root
+          password: 123456
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          url: jdbc:mysql://127.0.0.1:3306/db_all_in_one_2?characterEncoding=utf8&useSSL=false
+  main:
+    banner-mode: off
