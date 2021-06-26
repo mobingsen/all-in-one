@@ -5,17 +5,17 @@ spring:
     name: mybatis-dynamic-sql-hub
   datasource:
     dynamic:
-      primary: db_all_in_one_1
+      primary: all_in_one
       datasource:
-        db_all_in_one_1:
+        all_in_one:
           username: root
           password: 123456
           driver-class-name: com.mysql.cj.jdbc.Driver
-          url: jdbc:mysql://127.0.0.1:3306/db_all_in_one_1?characterEncoding=utf8&useSSL=false
-        db_all_in_one_2:
+          url: jdbc:mysql://127.0.0.1:3306/all_in_one?characterEncoding=utf8&useSSL=false
+        blog:
           username: root
           password: 123456
           driver-class-name: com.mysql.cj.jdbc.Driver
-          url: jdbc:mysql://127.0.0.1:3306/db_all_in_one_2?characterEncoding=utf8&useSSL=false
+          url: jdbc:mysql://127.0.0.1:3306/blog?characterEncoding=utf8&useSSL=false
   main:
     banner-mode: off

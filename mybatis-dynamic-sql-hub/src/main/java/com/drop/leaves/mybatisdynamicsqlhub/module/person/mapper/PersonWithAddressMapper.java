@@ -1,6 +1,6 @@
 package com.drop.leaves.mybatisdynamicsqlhub.module.person.mapper;
 
-import static com.drop.leaves.mybatisdynamicsqlhub.module.address.mapper.AddressDynamicSqlSupport.address;
+import static com.drop.leaves.mybatisdynamicsqlhub.module.person.mapper.AddressDynamicSqlSupport.address;
 import static com.drop.leaves.mybatisdynamicsqlhub.module.person.mapper.PersonDynamicSqlSupport.birthDate;
 import static com.drop.leaves.mybatisdynamicsqlhub.module.person.mapper.PersonDynamicSqlSupport.employed;
 import static com.drop.leaves.mybatisdynamicsqlhub.module.person.mapper.PersonDynamicSqlSupport.firstName;
