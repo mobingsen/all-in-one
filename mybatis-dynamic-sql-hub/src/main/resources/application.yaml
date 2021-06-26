@@ -11,7 +11,7 @@ spring:
           username: root
           password: 123456
           driver-class-name: com.mysql.cj.jdbc.Driver
-          url: jdbc:mysql://127.0.0.1:3306/all_in_one?characterEncoding=utf8&useSSL=false
+          url: jdbc:mysql://127.0.0.1:3306/all-in-one?characterEncoding=utf8&useSSL=false
         blog:
           username: root
           password: 123456
@@ -19,3 +19,17 @@ spring:
           url: jdbc:mysql://127.0.0.1:3306/blog?characterEncoding=utf8&useSSL=false
   main:
     banner-mode: off
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+      naming:
+        implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
+hibernate:
+  dialect:
+    storage_engine: innodb
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
