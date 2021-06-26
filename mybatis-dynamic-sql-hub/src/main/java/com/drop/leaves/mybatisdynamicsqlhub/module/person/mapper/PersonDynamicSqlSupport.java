@@ -1,16 +1,21 @@
 package com.drop.leaves.mybatisdynamicsqlhub.module.person.mapper;
 
-import java.sql.JDBCType;
-import java.util.Date;
-
+import com.drop.leaves.mybatisdynamicsqlhub.module.person.handler.LastNameTypeHandler;
+import com.drop.leaves.mybatisdynamicsqlhub.module.person.handler.YesNoTypeHandler;
 import com.drop.leaves.mybatisdynamicsqlhub.module.person.model.LastName;
 import org.mybatis.dynamic.sql.SqlColumn;
 import org.mybatis.dynamic.sql.SqlTable;
+
+import java.sql.JDBCType;
+import java.util.Date;
 
 /**
  * @author mobingsen
  */
 public final class PersonDynamicSqlSupport {
+
+    private PersonDynamicSqlSupport() {
+    }
 
     public static final Person person = new Person();
     public static final SqlColumn<Integer> id = person.id;
@@ -24,9 +29,9 @@ public final class PersonDynamicSqlSupport {
     public static final class Person extends SqlTable {
         public final SqlColumn<Integer> id = column("id", JDBCType.INTEGER);
         public final SqlColumn<String> firstName = column("first_name", JDBCType.VARCHAR);
-        public final SqlColumn<LastName> lastName = column("last_name", JDBCType.VARCHAR, "examples.simple.LastNameTypeHandler");
+        public final SqlColumn<LastName> lastName = column("last_name", JDBCType.VARCHAR, LastNameTypeHandler.class.getName());
         public final SqlColumn<Date> birthDate = column("birth_date", JDBCType.DATE);
-        public final SqlColumn<Boolean> employed = column("employed", JDBCType.VARCHAR, "examples.simple.YesNoTypeHandler");
+        public final SqlColumn<Boolean> employed = column("employed", JDBCType.VARCHAR, YesNoTypeHandler.class.getName());
         public final SqlColumn<String> occupation = column("occupation", JDBCType.VARCHAR);
         public final SqlColumn<Integer> addressId = column("address_id", JDBCType.INTEGER);
 

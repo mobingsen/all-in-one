@@ -1,6 +1,6 @@
 package com.drop.leaves.mybatisdynamicsqlhub.module.person.mapper;
 
-import com.drop.leaves.mybatisdynamicsqlhub.module.address.model.AddressRecord;
+import com.drop.leaves.mybatisdynamicsqlhub.module.person.model.AddressRecord;
 import com.drop.leaves.mybatisdynamicsqlhub.module.person.model.LastName;
 import lombok.Data;
 import lombok.experimental.Accessors;

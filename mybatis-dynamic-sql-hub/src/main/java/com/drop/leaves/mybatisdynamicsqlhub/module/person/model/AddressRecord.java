@@ -1,11 +1,13 @@
-package com.drop.leaves.mybatisdynamicsqlhub.module.address.model;
+package com.drop.leaves.mybatisdynamicsqlhub.module.person.model;
 
 import lombok.*;
+import lombok.experimental.Accessors;
 
 /**
  * @author mobingsen
  */
 @Data
+@Accessors(chain = true)
 public class AddressRecord {
 
     private Integer id;
