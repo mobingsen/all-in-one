@@ -1,4 +1,4 @@
-package com.drop.leaves.agent.collector.collects;
+package com.drop.leaves.agent.collector.collection;
 
 import com.drop.leaves.agent.collector.init.NotProguard;
 import lombok.Data;

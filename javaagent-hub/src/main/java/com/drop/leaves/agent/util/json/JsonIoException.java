@@ -1,4 +1,4 @@
-package com.drop.leaves.agent.collector.json;
+package com.drop.leaves.agent.util.json;
 
 /**
  * Custom RuntimeException subclass that is used as the main exception thrown by

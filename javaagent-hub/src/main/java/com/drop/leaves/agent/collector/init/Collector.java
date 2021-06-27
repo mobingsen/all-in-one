@@ -6,7 +6,8 @@ import javassist.CtClass;
  * 采集接口
  * @author mobingsen
  */
-public interface Collect {
+public interface Collector {
+
 	/**
 	 * 判断是否为采集目录
 	 * 
@@ -15,8 +16,7 @@ public interface Collect {
 	 * @param ctclass
 	 * @return
 	 */
-	public boolean isTarget(String className, ClassLoader loader,
-			CtClass ctclass);
+	boolean isTarget(String className, ClassLoader loader, CtClass ctclass);
 
 	/**
 	 * 对目标类进行转
@@ -27,6 +27,5 @@ public interface Collect {
 	 * @return
 	 * @throws Exception
 	 */
-	public byte[] transform(ClassLoader loader, String className,
-			byte[] classfileBuffer, CtClass ctclass) throws Exception;
+	byte[] transform(ClassLoader loader, String className, byte[] classfileBuffer, CtClass ctclass) throws Exception;
 }

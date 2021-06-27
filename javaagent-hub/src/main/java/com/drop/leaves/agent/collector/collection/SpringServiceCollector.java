@@ -1,9 +1,9 @@
-package com.drop.leaves.agent.collector.collects;
+package com.drop.leaves.agent.collector.collection;
 
 
-import com.drop.leaves.agent.collector.init.AbstractCollects;
+import com.drop.leaves.agent.collector.init.AbstractCollector;
 import com.drop.leaves.agent.collector.init.AgentLoader;
-import com.drop.leaves.agent.collector.init.Collect;
+import com.drop.leaves.agent.collector.init.Collector;
 import com.drop.leaves.agent.collector.init.NotProguard;
 import javassist.CtClass;
 import javassist.CtMethod;
@@ -14,9 +14,9 @@ import javassist.Modifier;
  * @author mobingsen
  */
 @NotProguard
-public class SpringServiceCollects extends AbstractCollects implements Collect {
+public class SpringServiceCollector extends AbstractCollector implements Collector {
     @NotProguard
-    public static SpringServiceCollects INSTANCE = new SpringServiceCollects();
+    public static SpringServiceCollector INSTANCE = new SpringServiceCollector();
 
     private static final String beginSrc;
     private static final String endSrc;
@@ -96,7 +96,7 @@ public class SpringServiceCollects extends AbstractCollects implements Collect {
             build.setErrorSrc(errorSrc);
             byteLoade.updateMethod(m, build);
         }
-        return byteLoade.toBytecote();
+        return byteLoade.toByteCode();
     }
 
     @NotProguard

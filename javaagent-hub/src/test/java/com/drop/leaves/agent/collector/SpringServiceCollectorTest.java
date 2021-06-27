@@ -1,6 +1,6 @@
 package com.drop.leaves.agent.collector;
 
-import com.drop.leaves.agent.collector.collects.SpringServiceCollects;
+import com.drop.leaves.agent.collector.collection.SpringServiceCollector;
 import javassist.ClassPool;
 import javassist.CtClass;
 import javassist.LoaderClassPath;
@@ -19,14 +19,14 @@ class SpringServiceCollectorTest {
         ClassLoader classLoader = SpringServiceCollectorTest.class.getClassLoader();
         ClassPool pool = new ClassPool(true);
         CtClass ctClass = pool.get(className);
-        boolean target = SpringServiceCollector.INSTANCE.isTarget(className, classLoader, ctClass);
+        boolean target = com.drop.leaves.agent.collector.SpringServiceCollector.INSTANCE.isTarget(className, classLoader, ctClass);
         Assertions.assertTrue(target);
     }
 
     @Test
     void transform() throws Exception {
-        SpringServiceCollects ins = SpringServiceCollects.INSTANCE;
-        ClassLoader loader = SpringServiceCollects.class.getClassLoader();
+        SpringServiceCollector ins = SpringServiceCollector.INSTANCE;
+        ClassLoader loader = SpringServiceCollector.class.getClassLoader();
         String className = "com.drop.leaves.agent.collector.SpringServiceCollectorTest$StringServiceMock";
         byte[] classfileBuffer = null;
         ClassPool pool = new ClassPool();

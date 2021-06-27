@@ -1,4 +1,4 @@
-package com.drop.leaves.agent.collector.json;
+package com.drop.leaves.agent.util.json;
 
 import java.lang.reflect.Field;
 import java.math.BigDecimal;

@@ -15,6 +15,7 @@ import javassist.NotFoundException;
  * @author mobingsen
  */
 public class AgentLoader {
+
     @SuppressWarnings("unused")
 	private final String className;
     @SuppressWarnings("unused")
@@ -32,7 +33,7 @@ public class AgentLoader {
     /*
     * 插入 监听 method
     */
-    public void updateMethod(CtMethod method, MethodSrcBuild srcBuild) throws CannotCompileException, NotFoundException {
+    public void updateMethod(CtMethod method, MethodSrcBuild srcBuild) throws CannotCompileException {
         CtMethod ctmethod = method;
         String methodName = method.getName();
         // 重构被代理的方法名称
@@ -50,13 +51,11 @@ public class AgentLoader {
     /**
      * 生成新的class 字节码 ，
      *
-     * @param className
-     * @param loader
      * @return
      * @throws NotFoundException
      * @throws Exception
      */
-    public byte[] toBytecote() throws IOException, CannotCompileException {
+    public byte[] toByteCode() throws IOException, CannotCompileException {
         return ctclass.toBytecode();
     }
 
@@ -86,18 +85,17 @@ public class AgentLoader {
         }
 
         public String buildSrc(CtMethod method) {
-            String result;
             try {
                 String template = method.getReturnType().getName().equals("void") ? voidSource : source;
                 String bsrc = beginSrc == null ? "" : beginSrc;
                 String eSrc = errorSrc == null ? "" : errorSrc;
                 String enSrc = endSrc == null ? "" : endSrc;
-                String src = String.format(template, bsrc, method.getName(), eSrc, enSrc);
-                return src;
+                return String.format(template, bsrc, method.getName(), eSrc, enSrc);
             } catch (NotFoundException e) {
                 throw new RuntimeException(e);
             }
         }
+
        //参数写法
        //$$  表示   arg1 arg2 arg3 ...
        //$1 表示 arg1

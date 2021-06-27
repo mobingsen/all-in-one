@@ -1,4 +1,4 @@
-package com.drop.leaves.agent.collector.collects;
+package com.drop.leaves.agent.collector.collection;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -7,9 +7,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 
 
-import com.drop.leaves.agent.collector.init.AbstractCollects;
+import com.drop.leaves.agent.collector.init.AbstractCollector;
 import com.drop.leaves.agent.collector.init.AgentLoader;
-import com.drop.leaves.agent.collector.init.Collect;
+import com.drop.leaves.agent.collector.init.Collector;
 import com.drop.leaves.agent.collector.init.NotProguard;
 import javassist.CtClass;
 import javassist.CtMethod;
@@ -19,9 +19,9 @@ import javassist.CtMethod;
  * @author mobingsen
  */
 @NotProguard
-public class JdbcCommonCollects extends AbstractCollects implements Collect {
+public class JdbcCommonCollector extends AbstractCollector implements Collector {
     @NotProguard
-    public static final JdbcCommonCollects INSTANCE = new JdbcCommonCollects();
+    public static final JdbcCommonCollector INSTANCE = new JdbcCommonCollector();
 
     private final static String[] connection_agent_methods = new String[]{"prepareStatement"};
     private final static String[] prepared_statement_methods = new String[]{"execute", "executeUpdate", "executeQuery"};
@@ -76,14 +76,14 @@ public class JdbcCommonCollects extends AbstractCollects implements Collect {
 
     @NotProguard
     public Connection proxyConnection(final Connection connection) {
-        Object c = Proxy.newProxyInstance(JdbcCommonCollects.class.getClassLoader()
+        Object c = Proxy.newProxyInstance(JdbcCommonCollector.class.getClassLoader()
                 , new Class[]{Connection.class}, new ConnectionHandler(connection));
         return (Connection) c;
     }
 
 
     public PreparedStatement proxyPreparedStatement(final PreparedStatement statement, JdbcStatistics jdbcStat) {
-        Object c = Proxy.newProxyInstance(JdbcCommonCollects.class.getClassLoader()
+        Object c = Proxy.newProxyInstance(JdbcCommonCollector.class.getClassLoader()
                 , new Class[]{PreparedStatement.class}, new PreparedStatementHandler(statement, jdbcStat));
         return (PreparedStatement) c;
     }
@@ -101,7 +101,7 @@ public class JdbcCommonCollects extends AbstractCollects implements Collect {
         build.setErrorSrc(errorSrc);
         build.setEndSrc(endSrc);
         byteLoade.updateMethod(connectMethod, build);
-        return byteLoade.toBytecote();
+        return byteLoade.toByteCode();
     }
 
 
@@ -127,7 +127,7 @@ public class JdbcCommonCollects extends AbstractCollects implements Collect {
             JdbcStatistics jdbcStat = null;
             try {
                 if (isTargetMethod) { // 获取PreparedStatement 开始统计
-                    jdbcStat = (JdbcStatistics) JdbcCommonCollects.this.begin(null, null);
+                    jdbcStat = (JdbcStatistics) JdbcCommonCollector.this.begin(null, null);
                     jdbcStat.jdbcUrl = connection.getMetaData().getURL();
                     jdbcStat.sql = (String) args[0];
                 }
@@ -138,8 +138,8 @@ public class JdbcCommonCollects extends AbstractCollects implements Collect {
                     result = proxyPreparedStatement(ps, jdbcStat);
                 }
             } catch (Throwable e) {
-                JdbcCommonCollects.this.error(jdbcStat, e);
-                JdbcCommonCollects.this.end(jdbcStat);
+                JdbcCommonCollector.this.error(jdbcStat, e);
+                JdbcCommonCollector.this.end(jdbcStat);
                 throw e;
             }
             return result;
@@ -171,12 +171,12 @@ public class JdbcCommonCollects extends AbstractCollects implements Collect {
                 result = method.invoke(statement, args);
             } catch (Throwable e) {
                 if (isTargetMethod) {
-                    JdbcCommonCollects.this.error(jdbcStat, e);
+                    JdbcCommonCollector.this.error(jdbcStat, e);
                 }
                 throw e;
             } finally {
                 if (isTargetMethod) {
-                    JdbcCommonCollects.this.end(jdbcStat);
+                    JdbcCommonCollector.this.end(jdbcStat);
                 }
             }
             return result;

@@ -1,8 +1,8 @@
 package com.drop.leaves.agent.collector.init;
 
-import com.drop.leaves.agent.collector.collects.ErrorLog;
-import com.drop.leaves.agent.collector.common.NetUtils;
-import com.drop.leaves.agent.collector.json.JsonWriter;
+import com.drop.leaves.agent.collector.collection.ErrorLog;
+import com.drop.leaves.agent.util.NetUtil;
+import com.drop.leaves.agent.util.json.JsonWriter;
 
 import java.io.*;
 import java.lang.reflect.InvocationTargetException;
@@ -23,7 +23,7 @@ import java.util.regex.Pattern;
  *
  * @author mobingsen
  */
-public abstract class AbstractCollects {
+public abstract class AbstractCollector {
     // 统一线程池
     private final static ExecutorService threadService;
 
@@ -41,15 +41,13 @@ public abstract class AbstractCollects {
          *  最大线程:200
          *  最大队例:1000
          */
-        threadService = new ThreadPoolExecutor(20, 200,
-                20000L, TimeUnit.MILLISECONDS,
+        threadService = new ThreadPoolExecutor(20, 200, 20000L, TimeUnit.MILLISECONDS,
                 new LinkedBlockingQueue<>(1000),
                 (r, executor) -> {
                     rejectedCount++;
-                    System.err.println("upload Task  rejected from " +
-                            executor.toString() + " rejectedCount:" + rejectedCount);
+                    System.err.println("upload Task  rejected from " + executor.toString() + " rejectedCount:" + rejectedCount);
                 });
-        localIp = NetUtils.getLocalHost();
+        localIp = NetUtil.getLocalHost();
     }
 
     @NotProguard
@@ -65,7 +63,6 @@ public abstract class AbstractCollects {
         stat.end = System.currentTimeMillis();
         stat.userTime = stat.end - stat.begin;
         sendStatistics(stat);
-        //  System.out.println("代理结束:" + stat.toString());
     }
 
     @NotProguard
@@ -237,7 +234,6 @@ public abstract class AbstractCollects {
             this.keyId = copy.keyId;
             this.ip = copy.ip;
             this.logType = copy.logType;
-            this.userTime = userTime;
         }
 
 
@@ -296,7 +292,7 @@ public abstract class AbstractCollects {
     }
 
     private static String toJson(Object obj) {
-        Map<String, Object> item = new HashMap<String, Object>();
+        Map<String, Object> item = new HashMap<>();
         item.put("TYPE", false);
         item.put(JsonWriter.SKIP_NULL_FIELDS, true);
         return JsonWriter.objectToJson(obj, item);

@@ -1,4 +1,4 @@
-package com.drop.leaves.agent.collector.json;
+package com.drop.leaves.agent.util.json;
 
 import java.io.*;
 import java.lang.reflect.Array;
@@ -9,8 +9,6 @@ import java.math.BigInteger;
 import java.sql.Timestamp;
 import java.util.*;
 import java.util.Map.Entry;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;

@@ -1,6 +1,6 @@
 package com.drop.leaves.agent.collector;
 
-import com.drop.leaves.agent.collector.collects.SpringControllerCollects;
+import com.drop.leaves.agent.collector.collection.SpringControllerCollector;
 import javassist.ClassPool;
 import javassist.CtClass;
 import javassist.LoaderClassPath;
@@ -23,9 +23,9 @@ public class SpringControllerCollectsTest {
 
     @Test
     public void isTarget() throws NotFoundException {
-        SpringControllerCollects ins = SpringControllerCollects.INSTANCE;
+        SpringControllerCollector ins = SpringControllerCollector.INSTANCE;
         String className = "com.drop.leaves.agent.collector.SpringControllerCollectsTest$SpringControllerMock";
-        ClassLoader loader = SpringControllerCollects.class.getClassLoader();
+        ClassLoader loader = SpringControllerCollector.class.getClassLoader();
         ClassPool pool = new ClassPool();
         pool.insertClassPath(new LoaderClassPath(loader));
         CtClass ctClass = pool.get(className);
@@ -35,9 +35,9 @@ public class SpringControllerCollectsTest {
 
     @Test
     public void transformTest() throws Exception {
-        SpringControllerCollects ins = SpringControllerCollects.INSTANCE;
+        SpringControllerCollector ins = SpringControllerCollector.INSTANCE;
         String className = "com.drop.leaves.agent.collector.SpringControllerCollectsTest$SpringControllerMock";
-        ClassLoader loader = SpringControllerCollects.class.getClassLoader();
+        ClassLoader loader = SpringControllerCollector.class.getClassLoader();
         ClassPool pool = new ClassPool();
         pool.insertClassPath(new LoaderClassPath(loader));
         CtClass ctClass = pool.get(className);
@@ -59,9 +59,9 @@ public class SpringControllerCollectsTest {
 
     @Test
     public void errorTest() throws Exception {
-        SpringControllerCollects ins = SpringControllerCollects.INSTANCE;
+        SpringControllerCollector ins = SpringControllerCollector.INSTANCE;
         String className = "com.drop.leaves.agent.collector.SpringControllerCollectsTest$SpringControllerMock";
-        ClassLoader loader = SpringControllerCollects.class.getClassLoader();
+        ClassLoader loader = SpringControllerCollector.class.getClassLoader();
         ClassPool pool = new ClassPool();
         pool.insertClassPath(new LoaderClassPath(loader));
         CtClass ctClass = pool.get(className);

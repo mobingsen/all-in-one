@@ -1,6 +1,6 @@
 package com.drop.leaves.agent.collector;
 
-import com.drop.leaves.agent.collector.collects.JdbcCommonCollects;
+import com.drop.leaves.agent.collector.collection.JdbcCommonCollector;
 import javassist.ClassPool;
 import javassist.CtClass;
 import javassist.LoaderClassPath;
@@ -17,9 +17,9 @@ public class JdbcCommonCollectsTest {
 
     @Test
     public void isTarget() throws NotFoundException {
-        JdbcCommonCollects ins = JdbcCommonCollects.INSTANCE;
+        JdbcCommonCollector ins = JdbcCommonCollector.INSTANCE;
         String className = "com.mysql.cj.jdbc.NonRegisteringDriver";
-        ClassLoader loader = JdbcCommonCollects.class.getClassLoader();
+        ClassLoader loader = JdbcCommonCollector.class.getClassLoader();
         ClassPool pool = new ClassPool();
         pool.insertClassPath(new LoaderClassPath(loader));
         CtClass ctClass = pool.get(className);
@@ -28,7 +28,7 @@ public class JdbcCommonCollectsTest {
 
     @Test
     public void proxyConnectionTest() throws SQLException {
-        JdbcCommonCollects ins = JdbcCommonCollects.INSTANCE;
+        JdbcCommonCollector ins = JdbcCommonCollector.INSTANCE;
         Connection connection = ins.proxyConnection(getConnection());
         PreparedStatement preparedStatement = connection.prepareStatement("select * from user");
         preparedStatement.execute();
@@ -36,9 +36,9 @@ public class JdbcCommonCollectsTest {
 
     @Test
     public void transform() throws NotFoundException {
-        JdbcCommonCollects instance = JdbcCommonCollects.INSTANCE;
+        JdbcCommonCollector instance = JdbcCommonCollector.INSTANCE;
         String className = "com.mysql.cj.jdbc.NonRegisteringDriver";
-        ClassLoader loader = JdbcCommonCollects.class.getClassLoader();
+        ClassLoader loader = JdbcCommonCollector.class.getClassLoader();
         ClassPool pool = new ClassPool();
         pool.insertClassPath(new LoaderClassPath(loader));
         CtClass ctClass = pool.get(className);

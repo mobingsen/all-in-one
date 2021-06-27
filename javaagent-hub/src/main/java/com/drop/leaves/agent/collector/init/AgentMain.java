@@ -9,9 +9,9 @@ import java.util.Arrays;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import com.drop.leaves.agent.collector.collects.JdbcCommonCollects;
-import com.drop.leaves.agent.collector.collects.SpringControllerCollects;
-import com.drop.leaves.agent.collector.collects.SpringServiceCollects;
+import com.drop.leaves.agent.collector.collection.JdbcCommonCollector;
+import com.drop.leaves.agent.collector.collection.SpringControllerCollector;
+import com.drop.leaves.agent.collector.collection.SpringServiceCollector;
 import javassist.ClassPool;
 import javassist.CtClass;
 import javassist.LoaderClassPath;
@@ -27,7 +27,7 @@ public class AgentMain implements ClassFileTransformer {
 
     protected static AgentMain agentMain;
     // 采集器集合
-    private static Collect[] collects;
+    private static Collector[] collectors;
     private Map<ClassLoader, ClassPool> classPoolMap = new ConcurrentHashMap<>();
 
     // 上传地址
@@ -81,10 +81,10 @@ public class AgentMain implements ClassFileTransformer {
 //        Assert.checkNull(System.getProperty("$bit_secret"),"param key is not null");
 
         //主要監控那個目標 
-        collects = new Collect[]{
-                SpringServiceCollects.INSTANCE,
-                JdbcCommonCollects.INSTANCE,
-                SpringControllerCollects.INSTANCE
+        collectors = new Collector[]{
+                SpringServiceCollector.INSTANCE,
+                JdbcCommonCollector.INSTANCE,
+                SpringControllerCollector.INSTANCE
         };
         agentMain = new AgentMain();
         inst.addTransformer(agentMain);
@@ -114,7 +114,7 @@ public class AgentMain implements ClassFileTransformer {
             try {
                 className = className.replaceAll("/", ".");
                 CtClass cclass = cp.get(className);
-                for (Collect c : collects) {
+                for (Collector c : collectors) {
                     if (c.isTarget(className, loader, cclass)) { // 仅限定只能转换一次.
                         byte[] bytes = c.transform(loader, className, classfileBuffer, cclass);
                         //File f = new File("/Users/tommy/git/bit-monitoring-agent/target/" + cclass.getSimpleName() + ".class");
