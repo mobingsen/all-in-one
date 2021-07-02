@@ -16,6 +16,9 @@ import javassist.CtNewMethod;
  */
 public class PreMainTraceAgent {
 
+    private PreMainTraceAgent() {
+    }
+
     public static void premain(String agentArgs, Instrumentation inst) {
         System.out.println("agentArgs : " + agentArgs);
         inst.addTransformer(new DefineTransformer(), true);
@@ -24,7 +27,9 @@ public class PreMainTraceAgent {
     static class DefineTransformer implements ClassFileTransformer {
 
         @Override
-        public byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined, ProtectionDomain protectionDomain, byte[] classfileBuffer) throws IllegalClassFormatException {
+        public byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined,
+                                ProtectionDomain protectionDomain, byte[] classfileBuffer)
+                throws IllegalClassFormatException {
             if ("com/util/JavaSsits".equals(className)) {
                 System.out.println("premain load Class:" + className);
                 try {

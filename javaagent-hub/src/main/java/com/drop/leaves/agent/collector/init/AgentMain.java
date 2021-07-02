@@ -9,7 +9,7 @@ import java.util.Arrays;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import com.drop.leaves.agent.collector.collection.JdbcCommonCollector;
+import com.drop.leaves.agent.collector.collection.JdbcCollector;
 import com.drop.leaves.agent.collector.collection.SpringControllerCollector;
 import com.drop.leaves.agent.collector.collection.SpringServiceCollector;
 import javassist.ClassPool;
@@ -83,7 +83,7 @@ public class AgentMain implements ClassFileTransformer {
         //主要監控那個目標 
         collectors = new Collector[]{
                 SpringServiceCollector.INSTANCE,
-                JdbcCommonCollector.INSTANCE,
+                JdbcCollector.INSTANCE,
                 SpringControllerCollector.INSTANCE
         };
         agentMain = new AgentMain();

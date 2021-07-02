@@ -19,9 +19,9 @@ import javassist.CtMethod;
  * @author mobingsen
  */
 @NotProguard
-public class JdbcCommonCollector extends AbstractCollector implements Collector {
+public class JdbcCollector extends AbstractCollector implements Collector {
     @NotProguard
-    public static final JdbcCommonCollector INSTANCE = new JdbcCommonCollector();
+    public static final JdbcCollector INSTANCE = new JdbcCollector();
 
     private final static String[] connection_agent_methods = new String[]{"prepareStatement"};
     private final static String[] prepared_statement_methods = new String[]{"execute", "executeUpdate", "executeQuery"};
@@ -76,14 +76,14 @@ public class JdbcCommonCollector extends AbstractCollector implements Collector 
 
     @NotProguard
     public Connection proxyConnection(final Connection connection) {
-        Object c = Proxy.newProxyInstance(JdbcCommonCollector.class.getClassLoader()
+        Object c = Proxy.newProxyInstance(JdbcCollector.class.getClassLoader()
                 , new Class[]{Connection.class}, new ConnectionHandler(connection));
         return (Connection) c;
     }
 
 
     public PreparedStatement proxyPreparedStatement(final PreparedStatement statement, JdbcStatistics jdbcStat) {
-        Object c = Proxy.newProxyInstance(JdbcCommonCollector.class.getClassLoader()
+        Object c = Proxy.newProxyInstance(JdbcCollector.class.getClassLoader()
                 , new Class[]{PreparedStatement.class}, new PreparedStatementHandler(statement, jdbcStat));
         return (PreparedStatement) c;
     }
@@ -127,7 +127,7 @@ public class JdbcCommonCollector extends AbstractCollector implements Collector 
             JdbcStatistics jdbcStat = null;
             try {
                 if (isTargetMethod) { // 获取PreparedStatement 开始统计
-                    jdbcStat = (JdbcStatistics) JdbcCommonCollector.this.begin(null, null);
+                    jdbcStat = (JdbcStatistics) JdbcCollector.this.begin(null, null);
                     jdbcStat.jdbcUrl = connection.getMetaData().getURL();
                     jdbcStat.sql = (String) args[0];
                 }
@@ -138,8 +138,8 @@ public class JdbcCommonCollector extends AbstractCollector implements Collector 
                     result = proxyPreparedStatement(ps, jdbcStat);
                 }
             } catch (Throwable e) {
-                JdbcCommonCollector.this.error(jdbcStat, e);
-                JdbcCommonCollector.this.end(jdbcStat);
+                JdbcCollector.this.error(jdbcStat, e);
+                JdbcCollector.this.end(jdbcStat);
                 throw e;
             }
             return result;
@@ -171,12 +171,12 @@ public class JdbcCommonCollector extends AbstractCollector implements Collector 
                 result = method.invoke(statement, args);
             } catch (Throwable e) {
                 if (isTargetMethod) {
-                    JdbcCommonCollector.this.error(jdbcStat, e);
+                    JdbcCollector.this.error(jdbcStat, e);
                 }
                 throw e;
             } finally {
                 if (isTargetMethod) {
-                    JdbcCommonCollector.this.end(jdbcStat);
+                    JdbcCollector.this.end(jdbcStat);
                 }
             }
             return result;

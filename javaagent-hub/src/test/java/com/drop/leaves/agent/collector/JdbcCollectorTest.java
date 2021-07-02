@@ -1,6 +1,6 @@
 package com.drop.leaves.agent.collector;
 
-import com.drop.leaves.agent.collector.collection.JdbcCommonCollector;
+import com.drop.leaves.agent.collector.collection.JdbcCollector;
 import javassist.ClassPool;
 import javassist.CtClass;
 import javassist.LoaderClassPath;
@@ -13,13 +13,13 @@ import java.sql.*;
 /**
  * @author by mobingsen on 2021/6/23 20:49
  */
-public class JdbcCommonCollectsTest {
+public class JdbcCollectorTest {
 
     @Test
     public void isTarget() throws NotFoundException {
-        JdbcCommonCollector ins = JdbcCommonCollector.INSTANCE;
+        JdbcCollector ins = JdbcCollector.INSTANCE;
         String className = "com.mysql.cj.jdbc.NonRegisteringDriver";
-        ClassLoader loader = JdbcCommonCollector.class.getClassLoader();
+        ClassLoader loader = JdbcCollector.class.getClassLoader();
         ClassPool pool = new ClassPool();
         pool.insertClassPath(new LoaderClassPath(loader));
         CtClass ctClass = pool.get(className);
@@ -28,7 +28,7 @@ public class JdbcCommonCollectsTest {
 
     @Test
     public void proxyConnectionTest() throws SQLException {
-        JdbcCommonCollector ins = JdbcCommonCollector.INSTANCE;
+        JdbcCollector ins = JdbcCollector.INSTANCE;
         Connection connection = ins.proxyConnection(getConnection());
         PreparedStatement preparedStatement = connection.prepareStatement("select * from user");
         preparedStatement.execute();
@@ -36,9 +36,9 @@ public class JdbcCommonCollectsTest {
 
     @Test
     public void transform() throws NotFoundException {
-        JdbcCommonCollector instance = JdbcCommonCollector.INSTANCE;
+        JdbcCollector instance = JdbcCollector.INSTANCE;
         String className = "com.mysql.cj.jdbc.NonRegisteringDriver";
-        ClassLoader loader = JdbcCommonCollector.class.getClassLoader();
+        ClassLoader loader = JdbcCollector.class.getClassLoader();
         ClassPool pool = new ClassPool();
         pool.insertClassPath(new LoaderClassPath(loader));
         CtClass ctClass = pool.get(className);

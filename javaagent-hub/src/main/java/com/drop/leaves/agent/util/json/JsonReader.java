@@ -121,7 +121,7 @@ public class JsonReader implements Closeable {
         assignInstantiator(Map.class, mapFactory);
         assignInstantiator(SortedMap.class, mapFactory);
 
-        Map<Class, JsonClassReaderBase> temp = new HashMap<Class, JsonClassReaderBase>();
+        Map<Class, JsonClassReaderBase> temp = new HashMap<>();
         temp.put(String.class, new Readers.StringReader());
         temp.put(Date.class, new Readers.DateReader());
         temp.put(AtomicBoolean.class, new Readers.AtomicBooleanReader());

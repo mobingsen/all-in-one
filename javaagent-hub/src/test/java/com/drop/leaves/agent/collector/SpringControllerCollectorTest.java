@@ -19,7 +19,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * @author by mobingsen on 2021/6/22 21:48
  */
-public class SpringControllerCollectsTest {
+public class SpringControllerCollectorTest {
 
     @Test
     public void isTarget() throws NotFoundException {
