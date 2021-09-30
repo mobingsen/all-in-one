@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.drop.leaves</groupId>
-        <artifactId>all-in-one</artifactId>
+        <artifactId>java-make-topic</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <groupId>com.drop.leaves.hdp</groupId>

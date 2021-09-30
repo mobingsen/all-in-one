@@ -10,10 +10,10 @@
     </parent>
 
     <groupId>com.drop.leaves</groupId>
-    <artifactId>all-in-one</artifactId>
+    <artifactId>java-make-topic</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>all-in-one</name>
-    <description>Demo project for all-in-one Spring Boot</description>
+    <name>java-make-topic</name>
+    <description>Demo project for java-make-topic Spring Boot</description>
     <packaging>pom</packaging>
 
     <properties>
