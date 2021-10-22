@@ -29,5 +29,6 @@
         <module>multiple-datasource</module>
         <module>lambda-java8</module>
         <module>javaagent-hub</module>
+        <module>Itext</module>
     </modules>
 </project>
