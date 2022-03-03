@@ -1,29 +1,17 @@
-# java-make-topic
+# tea-plus
 
-## hdp
+## 简介
 
-hadoop相关。
+本项目主要写一些java开发例子。
 
-## javaagent
+## 模块
 
-字节码插桩相关。
+| 模块                | 说明                 |
+| ------------------- | -------------------- |
+| hdp                 | hadoop相关。         |
+| agent               | 字节码插桩相关。     |
+| jooq                | 动态无sql相关。      |
+| multiple-datasource | 多数据源相关。       |
+| mybatis-dynamic-sql | mybatis动态sql相关。 |
 
-## jooq
 
-动态无sql相关。
-
-## lambda-java8
-
-java8 lambda相关。
-
-## multiple-datasource
-
-多sql数据源相关。
-
-## mybatis-dynamic-sql-hub
-
-mybatis动态无sql相关。
-
-## mybatis
-
-mybatis相关。
