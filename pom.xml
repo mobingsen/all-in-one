@@ -9,11 +9,11 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-    <groupId>com.drop.leaves</groupId>
-    <artifactId>java-make-topic</artifactId>
+    <groupId>org.tea.plus</groupId>
+    <artifactId>tea-plus</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>java-make-topic</name>
-    <description>Demo project for java-make-topic Spring Boot</description>
+    <name>tea-plus</name>
+    <description>Demo project for tea-plus Spring Boot</description>
     <packaging>pom</packaging>
 
     <properties>
@@ -23,12 +23,10 @@
 
     <modules>
         <module>hdp</module>
-        <module>mybatis-hub</module>
-        <module>jooq-hub</module>
-        <module>mybatis-dynamic-sql-hub</module>
+        <module>jooq</module>
+        <module>mybatis-dynamic-sql</module>
         <module>multiple-datasource</module>
-        <module>lambda-java8</module>
-        <module>javaagent-hub</module>
-        <module>Itext</module>
+        <module>agent</module>
+        <module>itext</module>
     </modules>
 </project>
